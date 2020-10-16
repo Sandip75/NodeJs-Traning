@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-traning",
+  "version": "1.0.0",
+  "description": "Example 1",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sandip75/NodeJs-Traning.git"
+  },
+  "keywords": [
+    "nodejs-traning"
+  ],
+  "author": "sunil & sandip",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sandip75/NodeJs-Traning/issues"
+  },
+  "homepage": "https://github.com/Sandip75/NodeJs-Traning#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
