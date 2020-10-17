@@ -4,7 +4,7 @@ app.get('/', (req, res) => {
   return res.status(200).send({msg: "Hi Developer!"});
 });
 
-//app.use('/employees', require('./employees'));
+app.use('/employees', require('./employees'));
 
 
 // catch all
