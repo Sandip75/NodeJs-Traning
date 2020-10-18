@@ -1,5 +1,7 @@
+require('dotenv').config();
+
 if (process.env.ENV === 'production') {
-    module.exports = requrie("./keys-prod.js");
+    module.exports = require("./keys-prod.js");
 } else {
-    module.exports = requrie("./keys-dev.js");
+    module.exports = require("./keys-dev.js");
 }
