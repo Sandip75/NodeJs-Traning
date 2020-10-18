@@ -43,5 +43,13 @@ app.get('/' , (req, res)=>{
 });
 
 app.delete('/' , (req,res)=>{
+    //#region Request Validation    
+    const schema = Joi.array().min(1).items(Joi.object().keys({
+        empId: Joi.string().required()
+    }));
+
+    const validation = Joi.validate(req.body, schema);
+    if (validation.error) return validationError(res , validation.error);
+    //#endregion
     DeleteEmployee(req,res);
 })

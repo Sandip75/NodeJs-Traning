@@ -11,9 +11,20 @@ async function CreateEmployee(req, res){
 
 async function UpdateEmployee(req, res) {
     try{
-        console.log("req.params----" , req.params);
         let response = await employees.UpdateEmployee(req.params.empNo, req.body);
         res.status(200).send({ message : "Emp Data Updated"});
+    }catch(err){
+        res.status(500).send(`Please Share this message with Us { message : ${err}}`);
+    }
+}
+
+async function DeleteEmployee(req,res) {
+    try{
+        let response = await req.body.map(async (obj) =>{
+            return await employees.DeleteEmployee(obj.empId);
+        });
+        response = await Promise.all(response);
+        res.status(200).send({ message : "Emp Deleted"});
     }catch(err){
         res.status(500).send(`Please Share this message with Us { message : ${err}}`);
     }
@@ -31,5 +42,6 @@ async function GetEmployee(req, res){
 module.exports = {
     CreateEmployee,
     UpdateEmployee,
-    GetEmployee
+    GetEmployee,
+    DeleteEmployee
 }

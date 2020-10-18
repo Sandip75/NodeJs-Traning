@@ -35,6 +35,19 @@ async function UpdateEmployee( empNo, {name, email=null, phoneNumber=null, isDis
     }   
 }
 
+async function DeleteEmployee(empNo) {
+    try{
+        const input = [
+            { name: "empNo", sqlType: sql.Int, value: empNo }
+        ];
+        let connectionObject = config.server;
+        let data = await sqlserver.FetchData(connectionObject, "usp_deleteEmployees" , input);
+        return true;
+    }catch(err){
+        throw err;
+    }
+}
+
 async function GetEmployee() {
     try{
         let connectionObject = config.server;
