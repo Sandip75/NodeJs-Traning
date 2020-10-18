@@ -1,1 +1,5 @@
-{ name: "countryCode", sqlType: sql.VarChar, value: countryCode }
+if (process.env.ENV === 'production') {
+    module.exports = requrie("./keys-prod.js");
+} else {
+    module.exports = requrie("./keys-dev.js");
+}
