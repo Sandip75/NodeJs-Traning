@@ -61,5 +61,6 @@ async function GetEmployee() {
 module.exports ={
     CreateEmployee,
     UpdateEmployee,
-    GetEmployee
+    GetEmployee,
+    DeleteEmployee
 }

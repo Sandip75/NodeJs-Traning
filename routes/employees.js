@@ -23,7 +23,7 @@ app.put('/:empNo', async(req,res)=>{
     });
 
     const validationURL = Joi.validate(req.params, schemaURL);
-    if (validationURL.error) return validationError(res , validationURL.error);
+    if (validationURL.error) return res.status(400).send(validation.error);
 
     const schema = Joi.object().keys({
         name: Joi.string().required(),
@@ -45,11 +45,11 @@ app.get('/' , (req, res)=>{
 app.delete('/' , (req,res)=>{
     //#region Request Validation    
     const schema = Joi.array().min(1).items(Joi.object().keys({
-        empId: Joi.string().required()
+        empId: Joi.number().required()
     }));
 
     const validation = Joi.validate(req.body, schema);
-    if (validation.error) return validationError(res , validation.error);
+    if (validation.error) return res.status(400).send(validation.error);
     //#endregion
     DeleteEmployee(req,res);
 })
