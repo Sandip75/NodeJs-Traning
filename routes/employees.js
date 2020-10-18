@@ -1,6 +1,6 @@
 const app = module.exports = require('express')();
 const Joi = require('@hapi/joi');
-const { CreateEmployee, GetEmployee } = require('../controllers').employees;
+const { CreateEmployee, UpdateEmployee, GetEmployee } = require('../controllers').employees;
 
 app.post('/', async(req,res)=>{
     //#region Request Validation
@@ -16,18 +16,26 @@ app.post('/', async(req,res)=>{
       CreateEmployee(req, res);
 });
 
-app.put('/:', async(req,res)=>{
+app.put('/:empNo', async(req,res)=>{
     //#region Request Validation
+    const schemaURL = Joi.object().keys({
+        empNo: Joi.string().required()
+    });
+
+    const validationURL = Joi.validate(req.params, schemaURL);
+    if (validationURL.error) return validationError(res , validationURL.error);
+
     const schema = Joi.object().keys({
         name: Joi.string().required(),
         email: Joi.string().email().default(''),
         phoneNumber: Joi.string().regex(/^\d{10}$/).default(''),
+        isDisable: Joi.boolean().valid('true','false')
       }).or('email','phoneNumber');
   
       const validation = Joi.validate(req.body, schema);
       if (validation.error) return res.status(400).send(validation.error);
       //#endregion
-      CreateEmployee(req, res);
+      UpdateEmployee(req, res);
 });
 
 app.get('/' , (req, res)=>{

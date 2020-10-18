@@ -18,6 +18,23 @@ async function CreateEmployee({name, email=null, phoneNumber=null}){
     }   
 }
 
+async function UpdateEmployee(empNo, {name, email=null, phoneNumber=null, isDisable=false}){
+    try{
+        const input = [
+            { name: "empNo", sqlType: sql.Int, value: empNO },
+            { name: "name", sqlType: sql.VarChar, value: name },
+            { name: "email", sqlType: sql.VarChar, value: email },
+            { name: "phoneNumber", sqlType: sql.VarChar, value: phoneNumber },
+            { name: "isDisable", sqlType: sql.Bit, value: isDisable }
+        ];
+        let connectionObject = config.server;
+        let data = await sqlserver.FetchData(connectionObject, "usp_updateEmployees" , input);
+        return true;
+    }catch(err){
+        throw err;
+    }   
+}
+
 async function GetEmployee() {
     try{
         let connectionObject = config.server;
@@ -30,5 +47,6 @@ async function GetEmployee() {
 
 module.exports ={
     CreateEmployee,
+    UpdateEmployee,
     GetEmployee
 }
