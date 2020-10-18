@@ -23,3 +23,16 @@ BEGIN
 END
 	
 GO
+
+
+
+CREATE proc [dbo].[usp_getEmployees]
+AS
+BEGIN
+	select * from employees(nolock) 
+END
+GO
+
+
+
+

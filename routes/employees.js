@@ -1,6 +1,6 @@
 const app = module.exports = require('express')();
 const Joi = require('@hapi/joi');
-const { createEmployee } = require('../controllers').employees;
+const { CreateEmployee, GetEmployee } = require('../controllers').employees;
 
 app.post('/', async(req,res)=>{
     //#region Request Validation
@@ -13,5 +13,9 @@ app.post('/', async(req,res)=>{
       const validation = Joi.validate(req.body, schema);
       if (validation.error) return res.status(400).send(validation.error);
       //#endregion
-      createEmployee(req, res);
-})
+      CreateEmployee(req, res);
+});
+
+app.get('/' , (req, res)=>{
+    GetEmployee(req,  res);
+});

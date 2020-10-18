@@ -2,7 +2,7 @@ const sql = require("mssql");
 const sqlserver = require('../utils/dataaccess/sqlserver');
 const config = require('../config');
 
-async function createEmployee({name, email=null, phoneNumber=null}){
+async function CreateEmployee({name, email=null, phoneNumber=null}){
     try{
         const input = [
             { name: "name", sqlType: sql.VarChar, value: name },
@@ -18,6 +18,17 @@ async function createEmployee({name, email=null, phoneNumber=null}){
     }   
 }
 
+async function GetEmployee() {
+    try{
+        let connectionObject = config.server;
+        return await sqlserver.FetchData(connectionObject, "usp_getEmployees" , [])
+        .then(obj=>obj);
+    }catch(err){
+        throw err;
+    }
+}
+
 module.exports ={
-    createEmployee
+    CreateEmployee,
+    GetEmployee
 }
