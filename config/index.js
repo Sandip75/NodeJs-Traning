@@ -1,0 +1,1 @@
+{ name: "countryCode", sqlType: sql.VarChar, value: countryCode }
