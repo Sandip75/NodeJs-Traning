@@ -41,6 +41,14 @@ update employees
 
 
 
+CREATE PROCEDURE [dbo].[usp_deleteEmployees] (  
+  @empNo int
+ )  
+AS  
+Delete from employees 
+where EmpNo = @empNo  
+
+
 
 CREATE proc [dbo].[usp_getEmployees]
 AS

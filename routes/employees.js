@@ -1,6 +1,6 @@
 const app = module.exports = require('express')();
 const Joi = require('@hapi/joi');
-const { CreateEmployee, UpdateEmployee, GetEmployee } = require('../controllers').employees;
+const { CreateEmployee, UpdateEmployee, GetEmployee, DeleteEmployee } = require('../controllers').employees;
 
 app.post('/', async(req,res)=>{
     //#region Request Validation
@@ -29,7 +29,7 @@ app.put('/:empNo', async(req,res)=>{
         name: Joi.string().required(),
         email: Joi.string().email().default(''),
         phoneNumber: Joi.string().regex(/^\d{10}$/).default(''),
-        isDisable: Joi.boolean().valid('true','false')
+        isDisable: Joi.boolean().valid(true,false)
       }).or('email','phoneNumber');
   
       const validation = Joi.validate(req.body, schema);
@@ -41,3 +41,7 @@ app.put('/:empNo', async(req,res)=>{
 app.get('/' , (req, res)=>{
     GetEmployee(req,  res);
 });
+
+app.delete('/' , (req,res)=>{
+    DeleteEmployee(req,res);
+})

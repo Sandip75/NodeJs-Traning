@@ -11,6 +11,7 @@ async function CreateEmployee(req, res){
 
 async function UpdateEmployee(req, res) {
     try{
+        console.log("req.params----" , req.params);
         let response = await employees.UpdateEmployee(req.params.empNo, req.body);
         res.status(200).send({ message : "Emp Data Updated"});
     }catch(err){

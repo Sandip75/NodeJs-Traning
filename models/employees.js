@@ -18,10 +18,10 @@ async function CreateEmployee({name, email=null, phoneNumber=null}){
     }   
 }
 
-async function UpdateEmployee(empNo, {name, email=null, phoneNumber=null, isDisable=false}){
+async function UpdateEmployee( empNo, {name, email=null, phoneNumber=null, isDisable=false}){
     try{
         const input = [
-            { name: "empNo", sqlType: sql.Int, value: empNO },
+            { name: "empNo", sqlType: sql.Int, value: empNo },
             { name: "name", sqlType: sql.VarChar, value: name },
             { name: "email", sqlType: sql.VarChar, value: email },
             { name: "phoneNumber", sqlType: sql.VarChar, value: phoneNumber },
