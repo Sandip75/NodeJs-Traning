@@ -21,8 +21,24 @@ BEGIN
 	INSERT into employees( Name ,  Email , PhoneNumber , isDisable) 
 	VALUES (@name, @email, @phonenumber, @isDisable)
 END
-	
 GO
+
+
+CREATE PROCEDURE [dbo].[usp_updateEmployees] (  
+  @empNo int,
+  @name varchar(50), 
+  @email varchar(50),
+  @phonenumber varchar(12),
+  @isDisable bit = 0
+ )  
+AS  
+update employees   
+ set Name = @name
+ ,Email = @email  
+ ,PhoneNumber = @phonenumber  
+ ,isDisable = @isDisable    
+  where EmpNo = @empNo  
+
 
 
 
