@@ -14,6 +14,37 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.semanticui.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <style>
+        .funcSuccess {
+            background-color: green;
+        }
+ 
+        .funcDelete {
+            background-color: red;
+        }
+ 
+        .funcEdit {
+            background-color: rosybrown;
+        }
+        .dontdisplay{
+            display:none;
+        }
+        .input-block-level {
+            display: block;
+            width: 60%;
+            min-height: 1px;
+        }
+        .input-block-level-btn {
+            
+            width: 36%;
+            min-height: 1px;
+        }
+        .input-block-level-date {
+            display: block;
+            width: 70%;
+            min-height: 1px;
+        }
+    </style>
 </head>
 
 <body>
@@ -62,9 +93,11 @@
                         </button>
          
                         <button id="EditBtn1" onclick="EditFunc(1)">
-                            <span class="glyphicon glyphicon-pencil"></span>
+                            <span class="glyphicon glyphicon-pencil">Edit</span>
                         </button>
-                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc(1)"><span class="glyphicon glyphicon-trash"></span></button>
+                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc(1)">
+                            <span class="glyphicon glyphicon-trash">Delete</span>
+                        </button>
                     </td>
                 </tr>
             </tbody>
@@ -72,5 +105,43 @@
     </div>
 
 </body>
+
+<script>
+    function EditFunc(i) {
+        document.getElementById("tr" + i).style.backgroundColor = "yellow";
+        document.getElementById("tdButtons" + i).style.backgroundColor = "white";
+        document.getElementById("EditBtn" + i).style.display = "none";
+        document.getElementById("DeleteBtn" + i).style.display = "none";
+        document.getElementById("UpdateBtn" + i).style.display = "";
+        document.getElementById("UndoEditBtn" + i).style.display = "";
+
+
+document.getElementById("InpItdOrigin" + i).value = document.getElementById("txtOrigin" + i).textContent;
+document.getElementById("txtOrigin" + i).style.display = "none";
+document.getElementById("InpItdOrigin" + i).style.display = "";
+
+document.getElementById("InpItdDestination" + i).value = document.getElementById("txtDestination" + i).textContent;
+document.getElementById("txtDestination" + i).style.display = "none";
+document.getElementById("InpItdDestination" + i).style.display = "";
+
+document.getElementById("InpItdDepartureDate" + i).value = reformatDateString(document.getElementById("txtDepartureDate" + i).textContent);
+document.getElementById("txtDepartureDate" + i).style.display = "none";
+document.getElementById("InpItdDepartureDate" + i).style.display = "";
+
+document.getElementById("InpItdDepartureTime" + i).value = document.getElementById("txtDepartureTime" + i).textContent;
+document.getElementById("txtDepartureTime" + i).style.display = "none";
+document.getElementById("InpItdDepartureTime" + i).style.display = "";
+
+document.getElementById("InpItdArrivalDate" + i).value = reformatDateString(document.getElementById("txtArrivalDate" + i).textContent);
+document.getElementById("txtArrivalDate" + i).style.display = "none";
+document.getElementById("InpItdArrivalDate" + i).style.display = "";
+
+document.getElementById("InpItdArrivalTime" + i).value = document.getElementById("txtArrivalTime" + i).textContent;
+document.getElementById("txtArrivalTime" + i).style.display = "none";
+document.getElementById("InpItdArrivalTime" + i).style.display = "";
+
+}
+
+</script>
 
 </html>
