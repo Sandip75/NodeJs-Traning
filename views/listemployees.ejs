@@ -68,33 +68,33 @@
      
                 <%response.forEach((ele)=>{%>
                 <tr id="emptr<%=ele.EmpNo%>">
-                    <td id="empName1">
-                        <span id="empNametxt1"><%=ele.Name%></span>
-                        <input type="text" id="InputName1" class="input-block-level" style="display:none;" name="name">
+                    <td id="empName<%=ele.EmpNo%>">
+                        <span id="empNametxt<%=ele.EmpNo%>"><%=ele.Name%></span>
+                        <input type="text" id="InputName<%=ele.EmpNo%>" class="input-block-level" style="display:none;">
                     </td>
                   
-                    <td id="empEmail1">
-                        <span id="empEmailtxt1"><%=ele.EmpNo%></span> 
-                        <input type="text" id="InputEmail1" class="input-block-level" style="display:none;" name="email">
+                    <td id="empEmail<%=ele.EmpNo%>">
+                        <span id="empEmailtxt<%=ele.EmpNo%>"><%=ele.Email%></span> 
+                        <input type="text" id="InputEmail<%=ele.EmpNo%>" class="input-block-level" style="display:none;">
                     </td>
 
-                    <td id="empPhoneNumber1">
-                        <span id="empPhoneNumbertxt1">8178877227</span> 
-                        <input type="text" id="InputPhoneNumber1" class="input-block-level" style="display:none;" name="phoneNumber">
+                    <td id="empPhoneNumber<%=ele.EmpNo%>">
+                        <span id="empPhoneNumbertxt<%=ele.EmpNo%>"><%=ele.PhoneNumber%></span> 
+                        <input type="text" id="InputPhoneNumber<%=ele.EmpNo%>" class="input-block-level" style="display:none;">
                     </td>
 
-                    <td id="empDisable1">
-                        <span id="empDisabletxt1">false</span> 
-                        <input type="text" id="InputDisable1" class="input-block-level" style="display:none;" name="isDisable">
+                    <td id="empDisable<%=ele.EmpNo%>">
+                        <span id="empDisabletxt<%=ele.EmpNo%>"><%=ele.isDisable%></span> 
+                        <input type="text" id="InputDisable<%=ele.EmpNo%>" class="input-block-level" style="display:none;">
                     </td>
                   
-                    <td id="empButton1">
-                        <button id="UpdateBtn1" type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc(1)">Update</button>
+                    <td id="empButton<%=ele.EmpNo%>">
+                        <button id="UpdateBtn<%=ele.EmpNo%>" type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc('<%=ele.EmpNo%>')">Update</button>
          
-                        <button id="EditBtn1" onclick="EditFunc(1)">
+                        <button id="EditBtn1" onclick="EditFunc('<%=ele.EmpNo%>')">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc(1)">
+                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc('<%=ele.EmpNo%>')">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
