@@ -6,7 +6,6 @@ app.get('/', (req, res) => {
 
 app.use('/employees', require('./employees'));
 
-
 // catch all
 app.all('*', (req, res) => {
   return res.status(404).send({msg: "Not Found"});
