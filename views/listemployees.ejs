@@ -115,140 +115,67 @@
         document.getElementById("UpdateBtn" + i).style.display = "";
         document.getElementById("UndoEditBtn" + i).style.display = "";
 
-        document.getElementById("InputName1" + i).value = document.getElementById("empNametxt1" + i).textContent;
-        document.getElementById("empNametxt1" + i).style.display = "none";
-        document.getElementById("InputName1" + i).style.display = "";
+        document.getElementById("InputName" + i).value = document.getElementById("empNametxt" + i).textContent;
+        document.getElementById("empNametxt" + i).style.display = "none";
+        document.getElementById("InputName" + i).style.display = "";
 
-        document.getElementById("InputEmail1" + i).value = document.getElementById("empEmailtxt1" + i).textContent;
-        document.getElementById("empEmailtxt1" + i).style.display = "none";
-        document.getElementById("InputEmail1" + i).style.display = "";
+        document.getElementById("InputEmail" + i).value = document.getElementById("empEmailtxt" + i).textContent;
+        document.getElementById("empEmailtxt" + i).style.display = "none";
+        document.getElementById("InputEmail" + i).style.display = "";
 
-        document.getElementById("InputPhoneNumber1" + i).value = document.getElementById("empPhoneNumbertxt1" + i).textContent;
-        document.getElementById("empPhoneNumbertxt1" + i).style.display = "none";
-        document.getElementById("InputPhoneNumber1" + i).style.display = "";
+        document.getElementById("InputPhoneNumber" + i).value = document.getElementById("empPhoneNumbertxt" + i).textContent;
+        document.getElementById("empPhoneNumbertxt" + i).style.display = "none";
+        document.getElementById("InputPhoneNumber" + i).style.display = "";
 
-        document.getElementById("InputDisable1" + i).value = document.getElementById("empDisabletxt1" + i).textContent;
-        document.getElementById("empDisabletxt1" + i).style.display = "none";
-        document.getElementById("InputDisable1" + i).style.display = "";
+        document.getElementById("InputDisable" + i).value = document.getElementById("empDisabletxt" + i).textContent;
+        document.getElementById("empDisabletxt" + i).style.display = "none";
+        document.getElementById("InputDisable" + i).style.display = "";
 
 }
 
-    
+
 function UpdateFunc(i) {
-        //sari rows pehle ek bar compare kar agr same hai to database ko request ni jaygi
-        var IOrigin = (document.getElementById("InpItdOrigin" + i).value).toUpperCase();
-        var IDestination = (document.getElementById("InpItdDestination" + i).value).toUpperCase();
-        var IDepartureDate = reformatDateString(document.getElementById("InpItdDepartureDate" + i).value);
-        var IDepartureTime = document.getElementById("InpItdDepartureTime" + i).value;
-        var IArrivalDate = reformatDateString(document.getElementById("InpItdArrivalDate" + i).value);
-        var IArrivalTime = document.getElementById("InpItdArrivalTime" + i).value;
-        if (IOrigin == "" || IDestination == "" || IDepartureDate == "" || IDepartureTime == "" || IArrivalDate == "" || IArrivalTime == "") {
-            alert("Please fill all values");
-
-        }
-        else {
-
-
-            var Origin = document.getElementById("txtOrigin" + i).textContent;
-            var Destination = document.getElementById("txtDestination" + i).textContent;
-            var DepartureDate = document.getElementById("txtDepartureDate" + i).textContent;
-            var DepartureTime = document.getElementById("txtDepartureTime" + i).textContent;
-            var ArrivalDate = document.getElementById("txtArrivalDate" + i).textContent;
-            var ArrivalTime = document.getElementById("txtArrivalTime" + i).textContent;
-            if (IOrigin == Origin && IDestination == Destination && IDepartureDate == DepartureDate && IDepartureTime == DepartureTime && IArrivalDate == ArrivalDate && IArrivalTime == ArrivalTime) {
-                UndoEdit(i);
-                alert("No Data Change");
+        var name = document.getElementById("InputName" + i).value;
+        var email = document.getElementById("InputEmail" + i).value;
+        var phoneNumber = document.getElementById("InputPhoneNumber" + i).value;
+        var isDisable = document.getElementById("InputDisable" + i).value;
+         
+        var url = '/employees/' + i;
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'PUT',
+            async: false,
+            url: url,
+            data: { name:name , email:email, phoneNumber:phoneNumber, isDisable:isDisable },
+            success: function (data) {
+                console.log(data);
             }
-            else {
+        });
+        document.getElementById("emptr" + i).style.backgroundColor = "white";
+        document.getElementById("EditBtn" + i).style.display = "";
+        document.getElementById("DeleteBtn" + i).style.display = "";
+        document.getElementById("UpdateBtn" + i).style.display = "none";
+        document.getElementById("UndoEditBtn" + i).style.display = "none";
 
-                var st = 0;
+        document.getElementById("empNametxt" + i).textContent = name;
+        document.getElementById("empNametxt" + i).style.display = "";
+        document.getElementById("InputName" + i).style.display = "none";
 
+        document.getElementById("empEmailtxt" + i).textContent = email;
+        document.getElementById("empEmailtxt" + i).style.display = "";
+        document.getElementById("InputEmail" + i).style.display = "none";
 
-                var things = [
-                    { id: 1, Item: "" + i },
-                    { id: 2, Item: IOrigin },
-                    { id: 3, Item: IDestination },
-                    { id: 4, Item: IDepartureDate },
-                    { id: 5, Item: IDepartureTime },
-                    { id: 6, Item: IArrivalDate },
-                    { id: 7, Item: IArrivalTime }
-                ];
+        document.getElementById("empPhoneNumbertxt" + i).textContent = phoneNumber;
+        document.getElementById("empPhoneNumbertxt" + i).style.display = "";
+        document.getElementById("InputPhoneNumber" + i).style.display = "none";
 
-                var things = JSON.stringify({ 'things': things });
-                var ms = "";
-
-                $.ajax({
-                    contentType: 'application/json; charset=utf-8',
-                    dataType: 'json',
-                    type: 'POST',
-                    async: false,
-                    url: '/Flights/UpdateData',
-                    data: things,
-                    success: function (data) {
-                        ms = data.msg;
-                        console.log(data.msg);
-                    },
-
-                });
-
-                if (ms == "1") {
-                    alert("data already present");
-                    UndoEdit(i);
-                }
-                else {
-
-                    var $el = $("#tr"+i),
-                        x = 2000,
-                        originalColor = $el.css("background");
-
-                    $el.css("background", "green");
-                    setTimeout(function () {
-                        if (document.getElementById("tr" + i).style.background == "green") {
-                            $el.css("background", "white");
-                        }
-                    }, x);
-                 
-                    document.getElementById("EditBtn" + i).style.display = "";
-                    document.getElementById("DeleteBtn" + i).style.display = "";
-                    document.getElementById("UpdateBtn" + i).style.display = "none";
-                    document.getElementById("UndoEditBtn" + i).style.display = "none";
-
-                    document.getElementById("txtOrigin" + i).textContent = IOrigin;
-                    document.getElementById("txtOrigin" + i).style.display = "";
-                    document.getElementById("InpItdOrigin" + i).style.display = "none";
-
-                    document.getElementById("txtDestination" + i).textContent = IDestination;
-                    document.getElementById("txtDestination" + i).style.display = "";
-                    document.getElementById("InpItdDestination" + i).style.display = "none";
-
-                    document.getElementById("txtDepartureDate" + i).textContent = IDepartureDate;
-                    document.getElementById("txtDepartureDate" + i).style.display = "";
-                    document.getElementById("InpItdDepartureDate" + i).style.display = "none";
-
-                    document.getElementById("txtDepartureTime" + i).textContent = IDepartureTime;
-                    document.getElementById("txtDepartureTime" + i).style.display = "";
-                    document.getElementById("InpItdDepartureTime" + i).style.display = "none";
-
-
-                    document.getElementById("txtArrivalDate" + i).textContent = IArrivalDate;
-                    document.getElementById("txtArrivalDate" + i).style.display = "";
-                    document.getElementById("InpItdArrivalDate" + i).style.display = "none";
-
-                    document.getElementById("txtArrivalTime" + i).textContent = IArrivalTime;
-                    document.getElementById("txtArrivalTime" + i).style.display = "";
-                    document.getElementById("InpItdArrivalTime" + i).style.display = "none";
-
-                }
-
-                //agr different hai to jaygi
-
-
-
-                //aur dekhenge ki agr database me kahi same aai
-                //naito green krdenge 5 sec aur success
-                //aur same to cannot be added same record already present
-            }
-        }
+        document.getElementById("empDisabletxt" + i).textContent = isDisable;
+        document.getElementById("empDisabletxt" + i).style.display = "";
+        document.getElementById("InputDisable" + i).style.display = "none";
+        
+            
+        
     }
     
 </script>
