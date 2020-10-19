@@ -5,7 +5,7 @@ async function CreateEmployee(req, res){
     try{
         let response = await employees.CreateEmployee(req.body);
         //res.status(200).send({ message : "New Emp Added"});
-        let response = await employees.GetEmployee();
+        response = await employees.GetEmployee();
         let companyName = "TBO"
         res.render("listemployees", {companyName , response});
     }catch(err){
