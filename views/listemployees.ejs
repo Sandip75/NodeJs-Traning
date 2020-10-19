@@ -154,7 +154,7 @@
             type: 'PUT',
             async: false,
             url: url,
-            data: { request },
+            data:  JSON.stringify(request),
             success: function (data) {
                 console.log(data);
             }
