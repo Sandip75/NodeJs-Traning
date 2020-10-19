@@ -94,10 +94,10 @@
                         </button>
          
                         <button id="EditBtn1" onclick="EditFunc(1)">
-                            <span class="glyphicon glyphicon-pencil">Edit</span>
+                            <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                         <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc(1)">
-                            <span class="glyphicon glyphicon-trash">Delete</span>
+                            <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
                 </tr>
@@ -108,6 +108,11 @@
 </body>
 
 <script>
+    $(document).ready(function () {
+        $.noConflict();
+        var t = $('#employee').DataTable();
+    });
+
     function EditFunc(i) {
         document.getElementById("emptr" + i).style.backgroundColor = "green";
         document.getElementById("empButton" + i).style.backgroundColor = "white";
@@ -135,7 +140,7 @@
 }
 
 
-function UpdateFunc(i) {
+    function UpdateFunc(i) {
         var name = document.getElementById("InputName" + i).value;
         var email = document.getElementById("InputEmail" + i).value;
         var phoneNumber = document.getElementById("InputPhoneNumber" + i).value;
@@ -175,9 +180,6 @@ function UpdateFunc(i) {
         document.getElementById("empDisabletxt" + i).textContent = isDisable;
         document.getElementById("empDisabletxt" + i).style.display = "";
         document.getElementById("InputDisable" + i).style.display = "none";
-        
-            
-        
     }
     
 </script>
