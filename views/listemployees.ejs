@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Employee Form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.semanticui.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <style>
+        .funcSuccess {
+            background-color: green;
+        }
+ 
+        .funcDelete {
+            background-color: red;
+        }
+ 
+        .funcEdit {
+            background-color: rosybrown;
+        }
+        .dontdisplay{
+            display:none;
+        }
+        .input-block-level {
+            display: block;
+            width: 60%;
+            min-height: 1px;
+        }
+        .input-block-level-btn {
+            
+            width: 36%;
+            min-height: 1px;
+        }
+        .input-block-level-date {
+            display: block;
+            width: 70%;
+            min-height: 1px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2><%=companyName%> Employees List </h2>
+        <table id="employee" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Disable</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+     
+                <tr id="emptr1">
+                    <td id="empName1">
+                        <span id="empNametxt1">Abcd</span>
+                        <input type="text" id="InputName1" class="input-block-level" style="display:none;" name="name">
+                    </td>
+                  
+                    <td id="empEmail1">
+                        <span id="empEmailtxt1">abc@gmail.com</span> 
+                        <input type="text" id="InputEmail1" class="input-block-level" style="display:none;" name="email">
+                    </td>
+
+                    <td id="empPhoneNumber1">
+                        <span id="empPhoneNumbertxt1">8178877227</span> 
+                        <input type="text" id="InputPhoneNumber1" class="input-block-level" style="display:none;" name="phoneNumber">
+                    </td>
+
+                    <td id="empDisable1">
+                        <span id="empDisabletxt1">false</span> 
+                        <input type="text" id="InputDisable1" class="input-block-level" style="display:none;" name="isDisable">
+                    </td>
+                  
+                    <td id="empButton1">
+                        <button id="UpdateBtn1" type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc(1)">Update</button>
+         
+                        <button id="EditBtn1" onclick="EditFunc(1)">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc(1)">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<script>
+    $(document).ready(function () {
+        $.noConflict();
+        var t = $('#employee').DataTable();
+    });
+
+    function EditFunc(i) {
+        document.getElementById("emptr" + i).style.backgroundColor = "green";
+        document.getElementById("empButton" + i).style.backgroundColor = "white";
+        document.getElementById("EditBtn" + i).style.display = "none";
+        document.getElementById("DeleteBtn" + i).style.display = "none";
+        document.getElementById("UpdateBtn" + i).style.display = "";
+
+        document.getElementById("InputName" + i).value = document.getElementById("empNametxt" + i).textContent;
+        document.getElementById("empNametxt" + i).style.display = "none";
+        document.getElementById("InputName" + i).style.display = "";
+
+        document.getElementById("InputEmail" + i).value = document.getElementById("empEmailtxt" + i).textContent;
+        document.getElementById("empEmailtxt" + i).style.display = "none";
+        document.getElementById("InputEmail" + i).style.display = "";
+
+        document.getElementById("InputPhoneNumber" + i).value = document.getElementById("empPhoneNumbertxt" + i).textContent;
+        document.getElementById("empPhoneNumbertxt" + i).style.display = "none";
+        document.getElementById("InputPhoneNumber" + i).style.display = "";
+
+        document.getElementById("InputDisable" + i).value = document.getElementById("empDisabletxt" + i).textContent;
+        document.getElementById("empDisabletxt" + i).style.display = "none";
+        document.getElementById("InputDisable" + i).style.display = "";
+
+}
+
+    function UpdateFunc(i) {
+        var name = document.getElementById("InputName" + i).value;
+        var email = document.getElementById("InputEmail" + i).value;
+        var phoneNumber = document.getElementById("InputPhoneNumber" + i).value;
+        var isDisable = document.getElementById("InputDisable" + i).value;
+         
+        var url = '/employees/' + i;
+        var request = {name:name , email:email, phoneNumber:phoneNumber, isDisable:isDisable};
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'PUT',
+            async: false,
+            url: url,
+            data:  JSON.stringify(request),
+            success: function (data) {
+                console.log(data);
+            }
+        });
+        document.getElementById("emptr" + i).style.backgroundColor = "white";
+        document.getElementById("EditBtn" + i).style.display = "";
+        document.getElementById("DeleteBtn" + i).style.display = "";
+        document.getElementById("UpdateBtn" + i).style.display = "none";
+
+        document.getElementById("empNametxt" + i).textContent = name;
+        document.getElementById("empNametxt" + i).style.display = "";
+        document.getElementById("InputName" + i).style.display = "none";
+
+        document.getElementById("empEmailtxt" + i).textContent = email;
+        document.getElementById("empEmailtxt" + i).style.display = "";
+        document.getElementById("InputEmail" + i).style.display = "none";
+
+        document.getElementById("empPhoneNumbertxt" + i).textContent = phoneNumber;
+        document.getElementById("empPhoneNumbertxt" + i).style.display = "";
+        document.getElementById("InputPhoneNumber" + i).style.display = "none";
+
+        document.getElementById("empDisabletxt" + i).textContent = isDisable;
+        document.getElementById("empDisabletxt" + i).style.display = "";
+        document.getElementById("InputDisable" + i).style.display = "none";
+    }
+
+    function DeleteFunc(i){
+        i = 3;
+        var request = [
+            {
+                empId : i
+            }
+        ];
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'DELETE',
+            async: false,
+            url: '/employees',
+            data:  JSON.stringify(request),
+            success: function (data) {
+                console.log(data);
+            }
+        });
+        document.getElementById("emptr" + i).style.display = "none";
+    }
+</script>
+
+</html>
