@@ -142,13 +142,14 @@ function UpdateFunc(i) {
         var isDisable = document.getElementById("InputDisable" + i).value;
          
         var url = '/employees/' + i;
+        var request = {name:name , email:email, phoneNumber:phoneNumber, isDisable:isDisable};
         $.ajax({
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             type: 'PUT',
             async: false,
             url: url,
-            data: { name:name , email:email, phoneNumber:phoneNumber, isDisable:isDisable },
+            data: { request },
             success: function (data) {
                 console.log(data);
             }
