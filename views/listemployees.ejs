@@ -63,7 +63,7 @@
             </thead>
             <tbody>
      
-                <tr id="emp1">
+                <tr id="emptr1">
                     <td id="empName1">
                         <span id="empNametxt1">Abcd</span>
                         <input type="text" id="InputName1" class="input-block-level" style="display:none;" name="name">
@@ -108,40 +108,32 @@
 
 <script>
     function EditFunc(i) {
-        document.getElementById("tr" + i).style.backgroundColor = "yellow";
-        document.getElementById("tdButtons" + i).style.backgroundColor = "white";
+        document.getElementById("emptr" + i).style.backgroundColor = "green";
+        document.getElementById("empButton" + i).style.backgroundColor = "white";
         document.getElementById("EditBtn" + i).style.display = "none";
         document.getElementById("DeleteBtn" + i).style.display = "none";
         document.getElementById("UpdateBtn" + i).style.display = "";
         document.getElementById("UndoEditBtn" + i).style.display = "";
 
+        document.getElementById("InputName1" + i).value = document.getElementById("empNametxt1" + i).textContent;
+        document.getElementById("empNametxt1" + i).style.display = "none";
+        document.getElementById("InputName1" + i).style.display = "";
 
-document.getElementById("InpItdOrigin" + i).value = document.getElementById("txtOrigin" + i).textContent;
-document.getElementById("txtOrigin" + i).style.display = "none";
-document.getElementById("InpItdOrigin" + i).style.display = "";
+        document.getElementById("InputEmail1" + i).value = document.getElementById("empEmailtxt1" + i).textContent;
+        document.getElementById("empEmailtxt1" + i).style.display = "none";
+        document.getElementById("InputEmail1" + i).style.display = "";
 
-document.getElementById("InpItdDestination" + i).value = document.getElementById("txtDestination" + i).textContent;
-document.getElementById("txtDestination" + i).style.display = "none";
-document.getElementById("InpItdDestination" + i).style.display = "";
+        document.getElementById("InputPhoneNumber1" + i).value = document.getElementById("empPhoneNumbertxt1" + i).textContent;
+        document.getElementById("empPhoneNumbertxt1" + i).style.display = "none";
+        document.getElementById("InputPhoneNumber1" + i).style.display = "";
 
-document.getElementById("InpItdDepartureDate" + i).value = reformatDateString(document.getElementById("txtDepartureDate" + i).textContent);
-document.getElementById("txtDepartureDate" + i).style.display = "none";
-document.getElementById("InpItdDepartureDate" + i).style.display = "";
-
-document.getElementById("InpItdDepartureTime" + i).value = document.getElementById("txtDepartureTime" + i).textContent;
-document.getElementById("txtDepartureTime" + i).style.display = "none";
-document.getElementById("InpItdDepartureTime" + i).style.display = "";
-
-document.getElementById("InpItdArrivalDate" + i).value = reformatDateString(document.getElementById("txtArrivalDate" + i).textContent);
-document.getElementById("txtArrivalDate" + i).style.display = "none";
-document.getElementById("InpItdArrivalDate" + i).style.display = "";
-
-document.getElementById("InpItdArrivalTime" + i).value = document.getElementById("txtArrivalTime" + i).textContent;
-document.getElementById("txtArrivalTime" + i).style.display = "none";
-document.getElementById("InpItdArrivalTime" + i).style.display = "";
+        document.getElementById("InputDisable1" + i).value = document.getElementById("empDisabletxt1" + i).textContent;
+        document.getElementById("empDisabletxt1" + i).style.display = "none";
+        document.getElementById("InputDisable1" + i).style.display = "";
 
 }
 
+    
 </script>
 
 </html>
