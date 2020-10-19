@@ -91,10 +91,10 @@
                     <td id="empButton<%=ele.EmpNo%>">
                         <button id="UpdateBtn<%=ele.EmpNo%>" type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc('<%=ele.EmpNo%>')">Update</button>
          
-                        <button id="EditBtn1" onclick="EditFunc('<%=ele.EmpNo%>')">
+                        <button id="EditBtn<%=ele.EmpNo%>" onclick="EditFunc('<%=ele.EmpNo%>')">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc('<%=ele.EmpNo%>')">
+                        <button id="DeleteBtn<%=ele.EmpNo%>" class="btn-link js-delete" onclick="DeleteFunc('<%=ele.EmpNo%>')">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </td>
