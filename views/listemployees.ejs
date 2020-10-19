@@ -10,11 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-    
-<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.semanticui.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/dataTables.semanticui.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js"></script>
 </head>
 
 <body>
@@ -32,37 +31,42 @@
                 </tr>
             </thead>
             <tbody>
-               
-                <tr id="Emp1">
-                    <td id="Emptd1"><span id=@("txtOrigin"+@flight.Id)>@flight.Origin</span><input type="text" id=@("InpItdOrigin"+@flight.Id) class="input-block-level" style="display:none;" name="Origin" pattern="[a-zA-Z]*" required></td>
-                   
-                    <td id=@("tdDestination"+@flight.Id)><span id=@("txtDestination"+@flight.Id)>@flight.Destination</span> <input type="text" id=@("InpItdDestination"+@flight.Id) class="input-block-level" style="display:none;" name="Destination" pattern="[a-zA-Z]*" required></td>
-                   
-                    <td id=@("tdDepartureDate"+@flight.Id)><span id=@("txtDepartureDate"+@flight.Id)>@flight.DepartureDate.ToShortDateString()</span> <input type="date" id=@("InpItdDepartureDate"+@flight.Id) class="input-block-level-date" style="display:none;" name="DepartureDate"  onchange="checkDate(@flight.Id)"></td>
-                   
-                    <td id=@("tdDepartureTime"+@flight.Id)><span id=@("txtDepartureTime"+@flight.Id)>@flight.DepartureDate.ToShortTimeString()</span><input type="time" id=@("InpItdDepartureTime"+@flight.Id) class="input-block-level" style="display:none;" name="DepartureTime"  onchange="checkDate()"></td>
-                   
-                    <td id=@("tdArrivalDate"+@flight.Id)><span id=@("txtArrivalDate"+@flight.Id)>@flight.ArrivalDate.ToShortDateString()</span><input type="date" id=@("InpItdArrivalDate"+@flight.Id) class="input-block-level-date" style="display:none;" name="ArrivalDate"  onchange="checkDate(@flight.Id)"></td>
-                   
-                    <td id=@("tdArrivalTime"+@flight.Id)><span id=@("txtArrivalTime"+@flight.Id)>@flight.ArrivalDate.ToShortTimeString()</span><input type="time" id=@("InpItdArrivalTime"+@flight.Id) class="input-block-level" style="display:none;" name="ArrivalTime"  onchange="checkDate()"></td>
-                   
-                    <td id=@("tdButtons"+@flight.Id)>
-                        <button id=@("UpdateBtn"+@flight.Id) type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc(@flight.Id)">Update</button>
-                        <button id="@("UndoDeleteBtn"+@flight.Id)" type="button"  class="btn btn-xs btn-secondary " onclick="UndoDelete(@flight.Id)" style="display:none;background-color:red;color:white;" >Cancel</button>
-        
-                        <button id="@("UndoEditBtn"+@flight.Id)" type="button"  class="input-block-level-btn btn btn-xs btn-secondary " onclick="UndoEdit(@flight.Id)" style="display:none;background-color:red;color:white;" >
+     
+                <tr id="emp1">
+                    <td id="empName1">
+                        <span id="empNametxt1">Abcd</span>
+                        <input type="text" id="InputName1" class="input-block-level" style="display:none;" name="name">
+                    </td>
+                  
+                    <td id="empEmail1">
+                        <span id="empEmailtxt2">abc@gmail.com</span> 
+                        <input type="text" id="InputEmail1" class="input-block-level" style="display:none;" name="email">
+                    </td>
+
+                    <td id="empPhoneNumber1">
+                        <span id="empPhoneNumbertxt2">abc@gmail.com</span> 
+                        <input type="text" id="InputPhoneNumber1" class="input-block-level" style="display:none;" name="phoneNumber">
+                    </td>
+
+                    <td id="empDisable1">
+                        <span id="empDisabletxt2">abc@gmail.com</span> 
+                        <input type="text" id="InputDisable1" class="input-block-level" style="display:none;" name="isDisable">
+                    </td>
+                  
+                    <td id="empButton1">
+                        <button id="UpdateBtn1" type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc(1)">Update</button>
+                        <button id="UndoDeleteBtn1" type="button"  class="btn btn-xs btn-secondary " onclick="UndoDelete(1)" style="display:none;background-color:red;color:white;" >Cancel</button>
+         
+                        <button id="UndoEditBtn1" type="button"  class="input-block-level-btn btn btn-xs btn-secondary " onclick="UndoEdit(1)" style="display:none;background-color:red;color:white;" >
                             Cancel
                         </button>
-        
-                        <button id=@("EditBtn"+@flight.Id) onclick="EditFunc(@flight.Id)">
+         
+                        <button id="EditBtn1" onclick="EditFunc(1)">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
-                        <button id=@("DeleteBtn"+@flight.Id) class="btn-link js-delete" onclick="DeleteFunc(@flight.Id)"><span class="glyphicon glyphicon-trash"></span></button>
-        
-        
+                        <button id="DeleteBtn1" class="btn-link js-delete" onclick="DeleteFunc(1)"><span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
-                }
             </tbody>
         </table>
     </div>
