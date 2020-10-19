@@ -66,9 +66,10 @@
             </thead>
             <tbody>
      
-                <tr id="emptr1">
+                <%response.forEach((ele)=>{%>
+                <tr id="emptr<%=ele.EmpNO%>">
                     <td id="empName1">
-                        <span id="empNametxt1">Abcd</span>
+                        <span id="empNametxt1"><%=ele.Name%></span>
                         <input type="text" id="InputName1" class="input-block-level" style="display:none;" name="name">
                     </td>
                   
@@ -98,6 +99,8 @@
                         </button>
                     </td>
                 </tr>
+               <%})%>
+
             </tbody>
         </table>
     </div>
