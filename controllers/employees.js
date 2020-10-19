@@ -34,7 +34,9 @@ async function DeleteEmployee(req,res) {
 async function GetEmployee(req, res){
     try{
         let response = await employees.GetEmployee();
-        res.status(200).send({data : response});
+        //res.status(200).send({data : response});
+        let companyName = "TBO"
+        res.render("listemployees", {companyName , response});
     }catch(err){
         res.status(500).send(`Please Share this message with Us { message : ${err}}`);
     }
