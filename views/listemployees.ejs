@@ -67,14 +67,14 @@
             <tbody>
      
                 <%response.forEach((ele)=>{%>
-                <tr id="emptr<%=ele.EmpNO%>">
+                <tr id="emptr<%=ele.EmpNo%>">
                     <td id="empName1">
                         <span id="empNametxt1"><%=ele.Name%></span>
                         <input type="text" id="InputName1" class="input-block-level" style="display:none;" name="name">
                     </td>
                   
                     <td id="empEmail1">
-                        <span id="empEmailtxt1">abc@gmail.com</span> 
+                        <span id="empEmailtxt1"><%=ele.EmpNo%></span> 
                         <input type="text" id="InputEmail1" class="input-block-level" style="display:none;" name="email">
                     </td>
 
