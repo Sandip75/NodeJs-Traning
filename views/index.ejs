@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Current Affairs Monthly</title>
+    <title>Employee Form</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -14,27 +14,23 @@
 <body>
 
     <div class="container">
-        <h2>Current Affairs Monthly</h2>
-        <form action="/admincurrentaffairsmonthlysave" method="post" enctype="multipart/form-data">
+        <h2>Employee Form</h2>
+        <form action="/employees" method="post">
             <div class="form-group">
-                <label for="username">User Name:</label>
-                <input type="text" class="form-control" id="username" placeholder="User Name" name="username">
+                <label for="name">Full Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="name" name="name">
             </div>
+            
             <div class="form-group">
-                <label for="pass">Password:</label>
-                <input type="password" class="form-control" id="pass" placeholder="Enter  password" name="pass">
-            </div>
-
-            <div class="form-group">
-                <label for="monthyear">Month & Year:</label>
-                <input type="month" id="monthyear" name="monthyear">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" placeholder="email" name="email">
             </div>
 
             <div class="form-group">
-                <label for="upload">Upload pdf:</label>
-                <input type="file" id="upload" name="upload" accept="application/pdf" />
+                <label for="phoneNumber">Full Name:</label>
+                <input type="text" class="form-control" id="phoneNumber" placeholder="phoneNumber" name="phoneNumber">
             </div>
-
+            
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
