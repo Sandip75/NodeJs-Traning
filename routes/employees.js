@@ -1,8 +1,9 @@
 const app = module.exports = require('express')();
 const Joi = require('@hapi/joi');
-const { CreateEmployee, UpdateEmployee, GetEmployee, DeleteEmployee } = require('../controllers').employees;
+const { CreateEmployee, UpdateEmployee, GetEmployee, DeleteEmployee, EmployeeForm } = require('../controllers').employees;
 
-app.post('/', async(req,res)=>{
+//#region CRUD
+app.post('', async(req,res)=>{
     //#region Request Validation
     const schema = Joi.object().keys({
         name: Joi.string().required(),
@@ -38,11 +39,11 @@ app.put('/:empNo', async(req,res)=>{
       UpdateEmployee(req, res);
 });
 
-app.get('/' , (req, res)=>{
+app.get('' , (req, res)=>{
     GetEmployee(req,  res);
 });
 
-app.delete('/' , (req,res)=>{
+app.delete('' , (req,res)=>{
     //#region Request Validation    
     const schema = Joi.array().min(1).items(Joi.object().keys({
         empId: Joi.number().required()
@@ -52,4 +53,9 @@ app.delete('/' , (req,res)=>{
     if (validation.error) return res.status(400).send(validation.error);
     //#endregion
     DeleteEmployee(req,res);
+})
+//#endregion
+
+app.get('/form', (req,res)=>{
+    EmployeeForm(req,res);
 })

@@ -1,5 +1,6 @@
 const employees = require('../models').employees;
 
+//#region CRUD
 async function CreateEmployee(req, res){
     try{
         let response = await employees.CreateEmployee(req.body);
@@ -38,10 +39,21 @@ async function GetEmployee(req, res){
         res.status(500).send(`Please Share this message with Us { message : ${err}}`);
     }
 }
+//#endregion
+
+function EmployeeForm(req,res) {
+    try{
+        let companyName = "TBO"
+        res.render("index", {companyName});
+    }catch(err){
+        res.status(500).send(`Please Share this message with Us { message : ${err}}`);
+    }
+}
 
 module.exports = {
     CreateEmployee,
     UpdateEmployee,
     GetEmployee,
-    DeleteEmployee
+    DeleteEmployee,
+    EmployeeForm
 }
