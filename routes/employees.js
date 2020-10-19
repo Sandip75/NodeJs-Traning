@@ -18,8 +18,6 @@ app.post('', async(req,res)=>{
 });
 
 app.put('/:empNo', async(req,res)=>{
-    console.log("---->>>> " , req.params.empNo,  "-->>", JSON.stringify(req.body));
-        
     //#region Request Validation
     const schemaURL = Joi.object().keys({
         empNo: Joi.string().required()

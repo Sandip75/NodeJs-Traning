@@ -87,11 +87,6 @@
                   
                     <td id="empButton1">
                         <button id="UpdateBtn1" type="button" class="input-block-level-btn btn btn-xs btn-success " style="display:none;" onclick="UpdateFunc(1)">Update</button>
-                        <button id="UndoDeleteBtn1" type="button"  class="btn btn-xs btn-secondary " onclick="UndoDelete(1)" style="display:none;background-color:red;color:white;" >Cancel</button>
-         
-                        <button id="UndoEditBtn1" type="button"  class="input-block-level-btn btn btn-xs btn-secondary " onclick="UndoEdit(1)" style="display:none;background-color:red;color:white;" >
-                            Cancel
-                        </button>
          
                         <button id="EditBtn1" onclick="EditFunc(1)">
                             <span class="glyphicon glyphicon-pencil"></span>
@@ -119,7 +114,6 @@
         document.getElementById("EditBtn" + i).style.display = "none";
         document.getElementById("DeleteBtn" + i).style.display = "none";
         document.getElementById("UpdateBtn" + i).style.display = "";
-        document.getElementById("UndoEditBtn" + i).style.display = "";
 
         document.getElementById("InputName" + i).value = document.getElementById("empNametxt" + i).textContent;
         document.getElementById("empNametxt" + i).style.display = "none";
@@ -138,7 +132,6 @@
         document.getElementById("InputDisable" + i).style.display = "";
 
 }
-
 
     function UpdateFunc(i) {
         var name = document.getElementById("InputName" + i).value;
@@ -163,7 +156,6 @@
         document.getElementById("EditBtn" + i).style.display = "";
         document.getElementById("DeleteBtn" + i).style.display = "";
         document.getElementById("UpdateBtn" + i).style.display = "none";
-        document.getElementById("UndoEditBtn" + i).style.display = "none";
 
         document.getElementById("empNametxt" + i).textContent = name;
         document.getElementById("empNametxt" + i).style.display = "";
@@ -181,7 +173,27 @@
         document.getElementById("empDisabletxt" + i).style.display = "";
         document.getElementById("InputDisable" + i).style.display = "none";
     }
-    
+
+    function DeleteFunc(i){
+        i = 3;
+        var request = [
+            {
+                empId : i
+            }
+        ];
+        $.ajax({
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            type: 'DELETE',
+            async: false,
+            url: '/employees',
+            data:  JSON.stringify(request),
+            success: function (data) {
+                console.log(data);
+            }
+        });
+        document.getElementById("emptr" + i).style.display = "none";
+    }
 </script>
 
 </html>
